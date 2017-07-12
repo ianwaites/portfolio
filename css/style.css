@@ -35,3 +35,7 @@ nav ul li {
 .main-cont {
   margin: 0 auto;
 }
+
+.template {
+  display: none;
+}

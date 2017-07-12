@@ -1,15 +1,64 @@
 // my js - new comment
 'use strict';
 
-Projects.allProjects = [];
+var allProjects = [];
 
-function Projects(name, desc, course, date, language, link, img) {
-  this.name = name;
-  this.desc = desc;
-  this.course = course;
-  this.date = date;
-  this.language = language;
-  this.link = link;
-  this.img = img;
-  Projects.allProjects.push(this);
+function Projects(portDataObj) {
+  this.name = portDataObj.name;
+  this.desc = portDataObj.desc;
+  this.course = portDataObj.course;
+  this.date = portDataObj.date;
+  this.language = portDataObj.language;
+  this.link = portDataObj.link;
+  this.img = portDataObj.img;
 }
+
+Projects.prototype.toHtml = function() {
+  var $newArticle = $('article.template').clone();
+  /* TODO: This cloned article still has a class of template.
+  However, in our modules.css stylesheet, we gave all elements
+  with a class of template a display of none. Let's make
+  sure we're not accidentally hiding our cloned article! */
+  $($newArticle).removeClass().addClass(this.name);
+
+
+  if (!this.date) $newArticle.addClass('draft');
+  $newArticle.data('category', this.language);
+
+  /* TODO: Now use jQuery traversal and setter methods to fill in the rest
+  of the current template clone with properties from this particular Article instance.
+  We need to fill in:
+    1. author name,
+    2. author url,
+    3. article title,
+    4. article body, and
+    5. publication date. */
+
+  // Display the date as a relative number of 'days ago'
+  $newArticle.find('h1').html(this.name);
+  $newArticle.find('#description').html(this.desc);
+  $newArticle.find('#course').html(this.course);
+  $newArticle.find('#date').html(this.date);
+  $newArticle.find('#lang').html(this.language);
+  $newArticle.find('#link').html(this.link);
+  $newArticle.find('#img').html(this.img);
+
+
+  $newArticle.find('#date').html('about ' + parseInt((new Date() - new Date(this.date)) / 60 / 60 / 24 / 1000) + ' days ago');
+  $newArticle.append('<hr>');
+  return $newArticle;
+};
+
+portData.sort(function(a, b) {
+  // REVIEW: Take a look at this sort method; This may be the first time we've seen it.
+  return (new Date(b.date)) - (new Date(a.date));
+});
+
+portData.forEach(function(articleObject) {
+  // REVIEW: Take a look at this forEach method; This may be the first time we've seen it.
+  allProjects.push(new Projects(articleObject));
+});
+
+allProjects.forEach(function(article) {
+  $('#articles').append(article.toHtml());
+});
