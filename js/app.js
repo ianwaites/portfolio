@@ -1,6 +1,7 @@
 // my js - new comment
+'use strict';
 
-var allProjects = [];
+Projects.allProjects = [];
 
 function Projects(name, desc, course, date, language, link, img) {
   this.name = name;
@@ -10,5 +11,5 @@ function Projects(name, desc, course, date, language, link, img) {
   this.language = language;
   this.link = link;
   this.img = img;
-  allProjects.push(this);
+  Projects.allProjects.push(this);
 }
