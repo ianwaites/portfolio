@@ -34,8 +34,24 @@ nav ul li {
 
 .main-cont {
   margin: 0 auto;
+
 }
 
 .template {
   display: none;
+}
+
+.phones {
+  position: relative;
+  margin-left: 2.5em;
+}
+.phone {
+  position: relative;
+  max-width: 80%;
+}
+
+section > article {
+  display: inline-block;
+  max-width: 30%;
+  padding: 1em;
 }

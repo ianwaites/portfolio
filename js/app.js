@@ -45,7 +45,7 @@ Projects.prototype.toHtml = function() {
 
 
   $newArticle.find('#date').html('about ' + parseInt((new Date() - new Date(this.date)) / 60 / 60 / 24 / 1000) + ' days ago');
-  $newArticle.append('<hr>');
+  // $newArticle.append('<hr>');
   return $newArticle;
 };
 
@@ -61,4 +61,18 @@ portData.forEach(function(articleObject) {
 
 allProjects.forEach(function(article) {
   $('#articles').append(article.toHtml());
+});
+
+// jQuery for nav
+$(document).ready(function() {
+  $('.tab').on('click', function(e) {
+    e.preventDefault();
+    $('.tab-content').hide();
+    $('#' + $(this).attr('data-content')).show();
+    console.log($('#' + $(this).attr('data-content')));
+
+  });
+
+  $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
+
 });
