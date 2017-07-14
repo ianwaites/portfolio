@@ -50,8 +50,20 @@ nav ul li {
   max-width: 80%;
 }
 
-section > article {
+.the-data {
   display: inline-block;
-  max-width: 30%;
+  max-width: 29%;
   padding: 1em;
+}
+
+.things {
+  font-weight: 600;
+}
+
+.things > span {
+  font-weight: normal;
+}
+
+#link {
+  font-size: .2em;
 }
