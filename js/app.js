@@ -14,16 +14,18 @@ function Projects(portDataObj) {
 }
 
 Projects.prototype.toHtml = function() {
-  var $newArticle = $('article.template').clone();
-  /* TODO: This cloned article still has a class of template.
-  However, in our modules.css stylesheet, we gave all elements
-  with a class of template a display of none. Let's make
-  sure we're not accidentally hiding our cloned article! */
-  $($newArticle).removeClass().addClass(this.name);
-
-
-  if (!this.date) $newArticle.addClass('draft');
-  $newArticle.data('category', this.language);
+  var template = $('#article-template').html();
+  var comp = Handlebars.compile(template);
+  // var $newArticle = $('article.template').clone();
+  // /* TODO: This cloned article still has a class of template.
+  // However, in our modules.css stylesheet, we gave all elements
+  // with a class of template a display of none. Let's make
+  // sure we're not accidentally hiding our cloned article! */
+  // $($newArticle).removeClass().addClass(this.name);
+  //
+  //
+  // if (!this.date) $newArticle.addClass('draft');
+  // $newArticle.data('category', this.language);
 
   /* TODO: Now use jQuery traversal and setter methods to fill in the rest
   of the current template clone with properties from this particular Article instance.
@@ -35,18 +37,19 @@ Projects.prototype.toHtml = function() {
     5. publication date. */
 
   // Display the date as a relative number of 'days ago'
-  $newArticle.find('h1').html(this.name);
-  $newArticle.find('#description').html(this.desc);
-  $newArticle.find('#course').html(this.course);
-  $newArticle.find('#date').html(this.date);
-  $newArticle.find('#lang').html(this.language);
-  $newArticle.find('#link').html(this.link);
-  $newArticle.find('#img').html(this.img);
+  // $newArticle.find('h1').html(this.name);
+  // $newArticle.find('#description').html(this.desc);
+  // $newArticle.find('#course').html(this.course);
+  // $newArticle.find('#date').html(this.date);
+  // $newArticle.find('#lang').html(this.language);
+  // $newArticle.find('#link').html(this.link);
+  // $newArticle.find('#img').html(this.img);
 
 
-  $newArticle.find('#date').html('about ' + parseInt((new Date() - new Date(this.date)) / 60 / 60 / 24 / 1000) + ' days ago');
+  this.daysAgo = parseInt((new Date() - new Date(this.date))/60/60/24/1000);
+  this.publishStatus = this.date ? `published ${this.daysAgo} days ago` : '(draft)';
   // $newArticle.append('<hr>');
-  return $newArticle;
+  return comp(this);
 };
 
 portData.sort(function(a, b) {
