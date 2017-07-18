@@ -62,3 +62,49 @@ $('#prev').on('click', function(){
 // }
 // )
 //
+Article.loadAll = function(rawData) {
+  rawData.sort(function(a,b) {
+    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+  });
+
+  rawData.forEach(function(ele) {
+    Article.all.push(new Article(ele));
+  })
+}
+
+const successCallback = function(data){
+  console.log(data)
+  localStorage.setItem('rawData', JSON.stringify(data))
+
+  Article.loadAll(data)
+
+}
+
+const errorCallback = function(err){
+  console.log(err)
+}
+// This function will retrieve the data from either a local or remote source,
+// and process it, then hand off control to the View.
+Article.fetchAll = function() {
+  if (localStorage.rawData) {
+    // When rawData is already in localStorage,
+    // we can load it with the .loadAll function above,
+    // and then render the index page (using the proper method on the articleView object).
+    Article.loadAll(JSON.parse(localStorage.rawData)); //TODO: What do we pass in to loadAll()?
+    //TODO: What method do we call to render the index page?
+    articleView.initIndexPage();
+  } else {
+    // TODO: When we don't already have the rawData,
+    // we need to retrieve the JSON file from the server with AJAX (which jQuery method is best for this?),
+    // cache it in localStorage so we can skip the server call next time,
+    // then load all the data into Article.all with the .loadAll function above,
+    // and then render the index page.
+    $.getJSON('data/hackerIpsum.json')
+      .then(successCallback, errorCallback)
+        // localStorage.setItem('rawData', JSON.stringify(data))
+        // Article.loadAll(data)
+        // articleView.initIndexPage.toHtml();
+
+    articleView.initIndexPage();
+  }
+};
