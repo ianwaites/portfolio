@@ -17,10 +17,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('./public'));
 
 // DONE: (STRETCH) Write a new route that will handle a request and send the new.html file back to the user
-app.get('/new', function(req, res) {
-  console.log('made that request')
-  res.sendFile('new.html', {root: './public'});
-})
+// app.get('/new', function(req, res) {
+//   console.log('made that request')
+//   res.sendFile('new.html', {root: './public'});
+// })
 
 
 // app.get('/new', function(req, res) {
