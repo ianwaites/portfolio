@@ -1,0 +1,69 @@
+/*my styles*/
+#top-cont {
+  width: 9.375em;
+  margin: 1em 0 0 .85em;
+}
+
+#top-cont h2 {
+  font-size: 1.5em;
+}
+
+nav {
+  float: right;
+  position: absolute;
+  top: 1em;
+  right: .85em;
+}
+
+nav ul {
+  display: block;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: .25em;
+}
+
+.fa {
+  font-size: 1.5em;
+}
+
+.fa:hover {
+  color: #ec7f37;
+}
+
+.main-cont {
+  margin: 0 auto;
+
+}
+
+.template {
+  display: none;
+}
+
+.phones {
+  position: relative;
+  margin-left: 2.5em;
+}
+.phone {
+  position: relative;
+  max-width: 80%;
+}
+
+.the-data {
+  display: inline-block;
+  max-width: 29%;
+  padding: 1em;
+}
+
+.things {
+  font-weight: 600;
+}
+
+.things > span {
+  font-weight: normal;
+}
+
+#link {
+  font-size: .2em;
+}
