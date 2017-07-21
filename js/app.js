@@ -1,4 +1,4 @@
-// my js - new comment
+// my js - new comment - new comment - new comment
 'use strict';
 
 const projectsView = {};
