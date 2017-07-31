@@ -111,5 +111,17 @@ var app = app || {};
     }
 
   };
+
+  // Get a sum of numbers using .reduce
+  var numbers = [6, 18, 24, 17];
+
+  function getSum(total, num) {
+    return total + num;
+  }
+
+  function myFunction(item) {
+    document.getElementById('foot').innerHTML = numbers.reduce(getSum);
+  }
+  myFunction();
   module.Projects = Projects;
 })(app)
