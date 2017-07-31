@@ -12,7 +12,7 @@ const successCallback = function(data){
 const errorCallback = function(err){
   console.log(err)
 }
-
+//Not sure what line 16 does, gonna try to find what api you're using. -Zach
 $.getJSON('https://swapi.co/api/people')
 .then(successCallback, errorCallback)
 
@@ -71,7 +71,7 @@ Article.loadAll = function(rawData) {
     Article.all.push(new Article(ele));
   })
 }
-
+// Looks like you have the function at the top of the page, I think you can just delete this one -Zach
 const successCallback = function(data){
   console.log(data)
   localStorage.setItem('rawData', JSON.stringify(data))
@@ -108,3 +108,4 @@ Article.fetchAll = function() {
     articleView.initIndexPage();
   }
 };
+//This file should probably be called indexPageView.js?
